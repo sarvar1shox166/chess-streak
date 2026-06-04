@@ -23,13 +23,18 @@
 
   <!-- HOME PAGE -->
   <div id="home-page" class="page active">
-    <div class="home-container">
-      <div class="hero-section">
-        <div class="hero-icon">&#9823;</div>
-        <h1>Shaxmat Streak</h1>
-        <p class="hero-subtitle">Zadachalarni yech, streakni oshir!</p>
-        <button class="btn-primary btn-large" onclick="navigateTo('game')">&#9654; O'yinni boshlash</button>
+    <!-- HERO - Chess Quiz style -->
+    <div class="hero-fullscreen">
+      <div class="hero-bg-board"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-center">
+        <h1 class="hero-title">CHESS<br>STREAK</h1>
+        <button class="btn-play" onclick="navigateTo('game')">PLAY</button>
       </div>
+    </div>
+
+    <!-- Stats section below -->
+    <div class="home-container">
       <div class="stats-grid">
         <div class="stat-card">
           <div class="stat-icon">&#128293;</div>
