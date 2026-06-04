@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shaxmat Streak</title>
+  <title>Chess Streak</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rammetto+One&family=Rawdies:wght@400;700&display=swap" rel="stylesheet">
@@ -14,10 +14,11 @@
 
   <!-- NAVIGATION -->
   <nav class="navbar" id="navbar">
-    <div class="nav-brand">&#9823; Shaxmat Streak</div>
+    <div class="nav-brand">&#9823; Chess Streak</div>
     <div class="nav-links">
       <a href="#" class="nav-link active" data-page="home">&#127968; Bosh sahifa</a>
       <a href="#" class="nav-link" data-page="game">&#9823; O'ynash</a>
+      <a href="#" class="nav-link" data-page="editor">&#9998; Editor</a>
       <a href="#" class="nav-link" data-page="leaderboard">&#127942; Reyting</a>
       <a href="#" class="nav-link" data-page="profile">&#128100; Profil</a>
       <a href="#" class="nav-link" data-page="settings">&#9881; Sozlamalar</a>
@@ -26,7 +27,6 @@
 
   <!-- HOME PAGE -->
   <div id="home-page" class="page active">
-    <!-- HERO - Chess Quiz style -->
     <div class="hero-fullscreen">
       <div class="hero-bg-board"></div>
       <div class="hero-overlay"></div>
@@ -35,63 +35,30 @@
         <button class="btn-play" onclick="navigateTo('game')">PLAY</button>
       </div>
     </div>
-
-    <!-- Stats section below -->
     <div class="home-container">
       <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon">&#128293;</div>
-          <div class="stat-value" id="home-best-streak">0</div>
-          <div class="stat-label">Eng yaxshi streak</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">&#9989;</div>
-          <div class="stat-value" id="home-total-solved">0</div>
-          <div class="stat-label">Yechildi</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">&#128200;</div>
-          <div class="stat-value" id="home-total-games">0</div>
-          <div class="stat-label">O'yinlar</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">&#127775;</div>
-          <div class="stat-value" id="home-accuracy">0%</div>
-          <div class="stat-label">Aniqlik</div>
-        </div>
-      </div>
-      <div class="rules-section">
-        <h2>Qoidalar</h2>
-        <div class="rules-grid">
-          <div class="rule-card"><span class="rule-num">1</span><span>Vaqt chekovi yo'q — xotirjam o'ylang</span></div>
-          <div class="rule-card"><span class="rule-num">2</span><span>Bitta noto'g'ri yurish — o'yin tugaydi</span></div>
-          <div class="rule-card"><span class="rule-num">3</span><span>Bitta skip huquqi beriladi</span></div>
-          <div class="rule-card"><span class="rule-num">4</span><span>Zadachalar tobora qiyinlashadi</span></div>
-        </div>
+        <div class="stat-card"><div class="stat-icon">&#128293;</div><div class="stat-value" id="home-best-streak">0</div><div class="stat-label">Eng yaxshi streak</div></div>
+        <div class="stat-card"><div class="stat-icon">&#9989;</div><div class="stat-value" id="home-total-solved">0</div><div class="stat-label">Yechildi</div></div>
+        <div class="stat-card"><div class="stat-icon">&#128200;</div><div class="stat-value" id="home-total-games">0</div><div class="stat-label">O'yinlar</div></div>
+        <div class="stat-card"><div class="stat-icon">&#127775;</div><div class="stat-value" id="home-accuracy">0%</div><div class="stat-label">Aniqlik</div></div>
       </div>
     </div>
   </div>
 
   <!-- GAME PAGE -->
   <div id="game-page" class="page">
-    <!-- SPLASH -->
     <div id="splash-screen" class="screen active">
       <div class="splash-content">
         <div class="logo">&#9823;</div>
         <h1>Tayyor!</h1>
-        <p class="tagline">Streakni boshlang va ko'ring qancha davom eta olasiz!</p>
+        <p class="tagline">Streakni boshlang!</p>
         <button id="start-btn" class="btn-primary">Boshlash</button>
       </div>
     </div>
-
-    <!-- GAME -->
     <div id="game-screen" class="screen">
       <header class="game-header">
         <div class="header-left"><span class="logo-small">&#9823; Streak</span></div>
-        <div class="streak-counter">
-          <span class="streak-label">STREAK</span>
-          <span id="streak-count">0</span>
-        </div>
+        <div class="streak-counter"><span class="streak-label">STREAK</span><span id="streak-count">0</span></div>
         <div class="header-right">
           <button id="skip-btn" class="btn-skip">&#9193; Skip <span id="skip-count">(1)</span></button>
         </div>
@@ -105,40 +72,91 @@
           <div id="status-message" class="status-message status-thinking">Yurish navbatingiz!</div>
         </div>
         <div class="board-area">
-          <div class="player-label" id="top-player">
-            <span class="player-color-dot black"></span>
-            <span id="top-player-name">Qora</span>
-          </div>
+          <div class="player-label" id="top-player"><span class="player-color-dot black"></span><span id="top-player-name">Qora</span></div>
           <div id="board-wrapper"><div id="board"></div></div>
-          <div class="player-label" id="bottom-player">
-            <span class="player-color-dot white"></span>
-            <span id="bottom-player-name">Oq (Siz)</span>
-          </div>
+          <div class="player-label" id="bottom-player"><span class="player-color-dot white"></span><span id="bottom-player-name">Oq (Siz)</span></div>
         </div>
         <div class="side-panel">
           <div class="move-history"><h3>Yurishlar</h3><div id="moves-list"></div></div>
-          <div class="puzzle-progress">
-            <div class="progress-bar-wrapper"><div id="progress-bar" class="progress-bar"></div></div>
-            <span id="progress-text">0 / 20</span>
-          </div>
+          <div class="puzzle-progress"><div class="progress-bar-wrapper"><div id="progress-bar" class="progress-bar"></div></div><span id="progress-text">0 / 20</span></div>
         </div>
       </main>
     </div>
-
-    <!-- GAME OVER -->
     <div id="gameover-screen" class="screen">
       <div class="gameover-content">
         <div class="gameover-icon" id="gameover-icon">&#128165;</div>
         <h2 id="gameover-title">O'yin tugadi!</h2>
         <p id="gameover-message">Noto'g'ri yurish!</p>
-        <div class="final-score">
-          <span class="score-label">STREAK</span>
-          <span class="score-number" id="final-streak">0</span>
-        </div>
+        <div class="final-score"><span class="score-label">STREAK</span><span class="score-number" id="final-streak">0</span></div>
         <div class="gameover-buttons">
-          <button id="retry-btn" class="btn-primary">&#128260; Qayta boshlash</button>
           <button class="btn-secondary" onclick="navigateTo('home')">&#127968; Bosh sahifa</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDITOR PAGE -->
+  <div id="editor-page" class="page">
+    <div class="panel-container">
+      <h1 class="panel-title">&#9998; Zadacha yaratish</h1>
+      <p class="panel-subtitle">Doskani sozlang, yechimni kiriting va saqlang</p>
+
+      <div class="editor-layout">
+        <div class="editor-board-section">
+          <div id="editor-board-wrapper">
+            <div id="editor-board"></div>
+          </div>
+          <div class="editor-board-controls">
+            <button class="btn-small" onclick="editorClear()">&#128465; Tozalash</button>
+            <button class="btn-small" onclick="editorStartPos()">&#9823; Boshlang'ich</button>
+            <button class="btn-small" onclick="editorFlip()">&#128260; Aylantirish</button>
+          </div>
+        </div>
+
+        <div class="editor-form">
+          <div class="form-group">
+            <label>FEN pozitsiya</label>
+            <input type="text" id="editor-fen" class="form-input" placeholder="FEN kiritish yoki doskani tahrirlash..." />
+            <button class="btn-small" onclick="editorLoadFen()">FEN yuklash</button>
+            <button class="btn-small" onclick="editorGetFen()">FEN olish</button>
+          </div>
+
+          <div class="form-group">
+            <label>Yechim (yurishlar)</label>
+            <p class="form-hint">Har bir yurishni vergul bilan ajrating. Format: e2e4,e7e5,d1h5</p>
+            <input type="text" id="editor-solution" class="form-input" placeholder="e1e8 yoki e2e4,e7e5,d1h5" />
+          </div>
+
+          <div class="form-group">
+            <label>Kim yuradi?</label>
+            <select id="editor-turn" class="form-input">
+              <option value="w">Oq</option>
+              <option value="b">Qora</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Qiyinlik</label>
+            <select id="editor-difficulty" class="form-input">
+              <option value="easy">Oson</option>
+              <option value="medium">O'rta</option>
+              <option value="hard">Qiyin</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Zadacha nomi</label>
+            <input type="text" id="editor-label" class="form-input" placeholder="Masalan: 1 harakatda mat" />
+          </div>
+
+          <button class="btn-primary" onclick="editorSave()">&#10004; Saqlash</button>
+        </div>
+      </div>
+
+      <div class="custom-puzzles-section">
+        <h2>Sizning zadachalaringiz</h2>
+        <div id="custom-puzzles-list" class="custom-puzzles-list"></div>
+        <p class="form-hint" id="no-custom-msg">Hali zadacha yaratilmagan</p>
       </div>
     </div>
   </div>
@@ -149,18 +167,10 @@
       <h1 class="panel-title">&#127942; Reyting jadvali</h1>
       <p class="panel-subtitle">Eng yaxshi o'yinchilar</p>
       <div class="leaderboard-table">
-        <div class="lb-header">
-          <span class="lb-rank">#</span>
-          <span class="lb-name">Ism</span>
-          <span class="lb-score">Streak</span>
-          <span class="lb-games">O'yinlar</span>
-        </div>
+        <div class="lb-header"><span class="lb-rank">#</span><span class="lb-name">Ism</span><span class="lb-score">Streak</span><span class="lb-games">O'yinlar</span></div>
         <div id="leaderboard-list"></div>
       </div>
-      <div class="your-rank-card" id="your-rank-card">
-        <span class="your-rank-label">Sizning o'rningiz</span>
-        <span class="your-rank-number" id="your-rank">-</span>
-      </div>
+      <div class="your-rank-card"><span class="your-rank-label">Sizning o'rningiz</span><span class="your-rank-number" id="your-rank">-</span></div>
     </div>
   </div>
 
@@ -169,9 +179,9 @@
     <div class="panel-container">
       <h1 class="panel-title">&#128100; Profil</h1>
       <div class="profile-card">
-        <div class="profile-avatar" id="profile-avatar">&#9823;</div>
+        <div class="profile-avatar">&#9823;</div>
         <div class="profile-info">
-          <input type="text" id="profile-name" class="profile-input" placeholder="Ismingizni kiriting..." value="" />
+          <input type="text" id="profile-name" class="profile-input" placeholder="Ismingizni kiriting..." />
           <div class="profile-stats-row">
             <div class="profile-stat"><span class="ps-val" id="prof-streak">0</span><span class="ps-label">Eng yaxshi</span></div>
             <div class="profile-stat"><span class="ps-val" id="prof-solved">0</span><span class="ps-label">Yechildi</span></div>
@@ -179,10 +189,7 @@
           </div>
         </div>
       </div>
-      <div class="history-section">
-        <h2>So'nggi o'yinlar</h2>
-        <div id="game-history-list" class="history-list"></div>
-      </div>
+      <div class="history-section"><h2>So'nggi o'yinlar</h2><div id="game-history-list" class="history-list"></div></div>
       <button class="btn-primary" onclick="saveProfile()">&#128190; Saqlash</button>
     </div>
   </div>
@@ -194,35 +201,15 @@
       <div class="settings-group">
         <h3>Taxta rangi</h3>
         <div class="color-options">
-          <label class="color-option active" data-theme="brown">
-            <div class="color-preview"><div class="cp-light" style="background:#f0d9b5"></div><div class="cp-dark" style="background:#b58863"></div></div>
-            <span>Klassik</span>
-          </label>
-          <label class="color-option" data-theme="green">
-            <div class="color-preview"><div class="cp-light" style="background:#ffffdd"></div><div class="cp-dark" style="background:#86a666"></div></div>
-            <span>Yashil</span>
-          </label>
-          <label class="color-option" data-theme="blue">
-            <div class="color-preview"><div class="cp-light" style="background:#dee3e6"></div><div class="cp-dark" style="background:#8ca2ad"></div></div>
-            <span>Ko'k</span>
-          </label>
-          <label class="color-option" data-theme="purple">
-            <div class="color-preview"><div class="cp-light" style="background:#e8dff5"></div><div class="cp-dark" style="background:#7b61a6"></div></div>
-            <span>Binafsha</span>
-          </label>
+          <label class="color-option active" data-theme="brown"><div class="color-preview"><div class="cp-light" style="background:#f0d9b5"></div><div class="cp-dark" style="background:#b58863"></div></div><span>Klassik</span></label>
+          <label class="color-option" data-theme="green"><div class="color-preview"><div class="cp-light" style="background:#ffffdd"></div><div class="cp-dark" style="background:#86a666"></div></div><span>Yashil</span></label>
+          <label class="color-option" data-theme="blue"><div class="color-preview"><div class="cp-light" style="background:#dee3e6"></div><div class="cp-dark" style="background:#8ca2ad"></div></div><span>Ko'k</span></label>
+          <label class="color-option" data-theme="purple"><div class="color-preview"><div class="cp-light" style="background:#e8dff5"></div><div class="cp-dark" style="background:#7b61a6"></div></div><span>Binafsha</span></label>
         </div>
       </div>
       <div class="settings-group">
-        <h3>Ovoz effektlari</h3>
-        <label class="toggle-switch">
-          <input type="checkbox" id="sound-toggle" checked />
-          <span class="toggle-slider"></span>
-          <span class="toggle-label">Yoqilgan</span>
-        </label>
-      </div>
-      <div class="settings-group">
         <h3>Ma'lumotlarni tozalash</h3>
-        <p class="settings-desc">Barcha statistikani va tarixni o'chiradi</p>
+        <p class="settings-desc">Barcha statistika va tarixni o'chiradi</p>
         <button class="btn-danger" onclick="clearAllData()">&#128465; Barchasini o'chirish</button>
       </div>
     </div>
