@@ -1,0 +1,76 @@
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#161512;--card:#1e1c1a;--accent:#f0a500;--green:#4caf50;--red:#e53935;--blue:#2196f3;--text:#e8e6e3;--dim:#6b6460;--border:#3a3835}
+html,body{height:100%;font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+.screen{display:none;min-height:100vh}.screen.active{display:flex}
+
+#splash-screen{align-items:center;justify-content:center;background:radial-gradient(ellipse at center,#1e1c1a 0%,#161512 70%)}
+.splash-content{text-align:center;max-width:480px;padding:40px 24px;animation:fadeUp .6s ease}
+.logo{font-size:80px;margin-bottom:16px;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.splash-content h1{font-size:42px;font-weight:800;color:var(--accent);margin-bottom:8px}
+.tagline{font-size:16px;color:#a0998f;margin-bottom:36px}
+.rules{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:32px;text-align:left}
+.rule-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);font-size:15px;color:#a0998f}
+.rule-item:last-child{border-bottom:none}.rule-icon{font-size:20px}
+
+.btn-primary{background:var(--accent);color:#1a1400;border:none;border-radius:8px;padding:14px 40px;font-size:18px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-primary:hover{background:#f7c04a;transform:translateY(-2px);box-shadow:0 6px 20px rgba(240,165,0,.4)}
+.btn-skip{background:var(--card);color:#a0998f;border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:14px;font-weight:600;cursor:pointer}
+.btn-skip:disabled{opacity:.4;cursor:not-allowed}
+
+#game-screen{flex-direction:column}
+.game-header{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.logo-small{font-size:20px;font-weight:800;color:var(--accent)}
+.streak-counter{display:flex;flex-direction:column;align-items:center;background:var(--bg);border:2px solid var(--accent);border-radius:8px;padding:6px 24px}
+.streak-label{font-size:10px;font-weight:700;color:var(--accent);letter-spacing:2px}
+#streak-count{font-size:32px;font-weight:800;color:var(--accent);line-height:1}
+
+.game-main{display:flex;flex-wrap:wrap;gap:20px;padding:20px 24px;max-width:1100px;margin:0 auto;justify-content:center}
+.puzzle-info{width:100%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.puzzle-meta{display:flex;align-items:center;gap:12px}
+#puzzle-number{font-size:14px;color:#a0998f;font-weight:600}
+.difficulty-badge{font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px;background:var(--card);border:1px solid var(--border)}
+.difficulty-badge.easy{color:var(--green);border-color:var(--green)}
+.difficulty-badge.medium{color:var(--accent);border-color:var(--accent)}
+.difficulty-badge.hard{color:var(--red);border-color:var(--red)}
+
+.status-message{font-size:15px;font-weight:600;padding:8px 16px;border-radius:8px}
+.status-thinking{background:rgba(33,150,243,.15);color:var(--blue);border:1px solid rgba(33,150,243,.3)}
+.status-correct{background:rgba(76,175,80,.15);color:var(--green);border:1px solid rgba(76,175,80,.3)}
+.status-wrong{background:rgba(229,57,53,.15);color:var(--red);border:1px solid rgba(229,57,53,.3)}
+.status-skipped{background:rgba(240,165,0,.15);color:var(--accent);border:1px solid rgba(240,165,0,.3)}
+
+.board-area{display:flex;flex-direction:column;align-items:center;gap:10px}
+#board-wrapper{border-radius:8px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 0 3px var(--border)}
+#board-wrapper.correct-flash{box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 0 4px var(--green)}
+#board-wrapper.wrong-flash{box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 0 4px var(--red);animation:shake .4s}
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+#board{width:420px!important;height:420px!important}
+.player-label{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#a0998f}
+.player-color-dot{width:12px;height:12px;border-radius:50%}
+.player-color-dot.white{background:#e8e6e3;border:2px solid #999}
+.player-color-dot.black{background:#333;border:2px solid #666}
+
+.side-panel{display:flex;flex-direction:column;gap:16px;min-width:240px}
+.move-history{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;max-height:300px;overflow-y:auto}
+.move-history h3{font-size:12px;font-weight:700;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
+#moves-list{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.move-entry{font-size:14px;font-weight:600;padding:4px 8px;border-radius:4px;color:#a0998f}
+.move-entry.correct{color:var(--green);background:rgba(76,175,80,.1)}
+.move-entry.opponent{color:var(--dim)}
+.puzzle-progress{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px}
+.progress-bar-wrapper{background:var(--bg);border-radius:99px;height:8px;overflow:hidden;margin-bottom:8px}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--accent),#f7c04a);border-radius:99px;width:0%;transition:width .4s}
+#progress-text{font-size:12px;color:var(--dim);font-weight:600}
+
+#gameover-screen{align-items:center;justify-content:center;background:radial-gradient(ellipse at center,#1e1c1a,#161512 70%)}
+.gameover-content{text-align:center;max-width:420px;padding:48px 32px;background:var(--card);border:1px solid var(--border);border-radius:20px;box-shadow:0 8px 32px rgba(0,0,0,.5);animation:fadeUp .5s}
+.gameover-icon{font-size:72px;margin-bottom:16px}
+.gameover-content h2{font-size:32px;font-weight:800;margin-bottom:8px}
+#gameover-message{font-size:16px;color:#a0998f;margin-bottom:32px}
+.final-score{display:flex;flex-direction:column;align-items:center;gap:4px;margin-bottom:32px;background:var(--bg);border-radius:12px;padding:20px}
+.score-label{font-size:12px;color:var(--dim);font-weight:700;letter-spacing:2px}
+.score-number{font-size:64px;font-weight:800;color:var(--accent);line-height:1}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:700px){#board{width:300px!important;height:300px!important}.splash-content h1{font-size:32px}.logo{font-size:60px}.game-main{padding:12px}}
