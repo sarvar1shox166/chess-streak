@@ -95,70 +95,54 @@
     </div>
   </div>
 
-  <!-- EDITOR PAGE -->
+  <!-- EDITOR PAGE - Lichess style -->
   <div id="editor-page" class="page">
-    <div class="panel-container">
-      <h1 class="panel-title">&#9998; Zadacha yaratish</h1>
-      <p class="panel-subtitle">Doskani sozlang, yechimni kiriting va saqlang</p>
-
-      <div class="editor-layout">
-        <div class="editor-board-section">
-          <div id="editor-board-wrapper">
-            <div id="editor-board"></div>
-          </div>
-          <div class="editor-board-controls">
-            <button class="btn-small" onclick="editorClear()">&#128465; Tozalash</button>
-            <button class="btn-small" onclick="editorStartPos()">&#9823; Boshlang'ich</button>
-            <button class="btn-small" onclick="editorFlip()">&#128260; Aylantirish</button>
-          </div>
+    <div class="editor-container">
+      <div class="editor-main">
+        <div class="spare-pieces-row" id="spare-top">
+          <div class="spare-piece" data-piece="bK">&#9818;</div>
+          <div class="spare-piece" data-piece="bQ">&#9819;</div>
+          <div class="spare-piece" data-piece="bR">&#9820;</div>
+          <div class="spare-piece" data-piece="bB">&#9821;</div>
+          <div class="spare-piece" data-piece="bN">&#9822;</div>
+          <div class="spare-piece" data-piece="bP">&#9823;</div>
+          <div class="spare-piece trash-piece">&#128465;</div>
         </div>
-
-        <div class="editor-form">
-          <div class="form-group">
-            <label>FEN pozitsiya</label>
-            <input type="text" id="editor-fen" class="form-input" placeholder="FEN kiritish yoki doskani tahrirlash..." />
-            <button class="btn-small" onclick="editorLoadFen()">FEN yuklash</button>
-            <button class="btn-small" onclick="editorGetFen()">FEN olish</button>
-          </div>
-
-          <div class="form-group">
-            <label>Yechim (yurishlar)</label>
-            <p class="form-hint">Har bir yurishni vergul bilan ajrating. Format: e2e4,e7e5,d1h5</p>
-            <input type="text" id="editor-solution" class="form-input" placeholder="e1e8 yoki e2e4,e7e5,d1h5" />
-          </div>
-
-          <div class="form-group">
-            <label>Kim yuradi?</label>
-            <select id="editor-turn" class="form-input">
-              <option value="w">Oq</option>
-              <option value="b">Qora</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label>Qiyinlik</label>
-            <select id="editor-difficulty" class="form-input">
-              <option value="easy">Oson</option>
-              <option value="medium">O'rta</option>
-              <option value="hard">Qiyin</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label>Zadacha nomi</label>
-            <input type="text" id="editor-label" class="form-input" placeholder="Masalan: 1 harakatda mat" />
-          </div>
-
-          <button class="btn-primary" onclick="editorSave()">&#10004; Saqlash</button>
+        <div id="editor-board-wrapper"><div id="editor-board"></div></div>
+        <div class="spare-pieces-row" id="spare-bottom">
+          <div class="spare-piece" data-piece="wK">&#9812;</div>
+          <div class="spare-piece" data-piece="wQ">&#9813;</div>
+          <div class="spare-piece" data-piece="wR">&#9814;</div>
+          <div class="spare-piece" data-piece="wB">&#9815;</div>
+          <div class="spare-piece" data-piece="wN">&#9816;</div>
+          <div class="spare-piece" data-piece="wP">&#9817;</div>
+          <div class="spare-piece trash-piece">&#128465;</div>
         </div>
       </div>
-
-      <div class="custom-puzzles-section">
-        <h2>Sizning zadachalaringiz</h2>
-        <div id="custom-puzzles-list" class="custom-puzzles-list"></div>
-        <p class="form-hint" id="no-custom-msg">Hali zadacha yaratilmagan</p>
+      <div class="editor-sidebar">
+        <div class="editor-group"><select id="editor-turn" class="form-input"><option value="w">Oqlar navbati</option><option value="b">Qoralar navbati</option></select></div>
+        <div class="editor-group">
+          <label>Rokirovka</label>
+          <div class="castle-checks">
+            <label class="check-item"><input type="checkbox" id="castle-wk" checked><span>Oqlar O-O</span></label>
+            <label class="check-item"><input type="checkbox" id="castle-wq" checked><span>O-O-O</span></label>
+            <label class="check-item"><input type="checkbox" id="castle-bk" checked><span>Qoralar O-O</span></label>
+            <label class="check-item"><input type="checkbox" id="castle-bq" checked><span>O-O-O</span></label>
+          </div>
+        </div>
+        <div class="editor-group"><label>Yechim</label><p class="form-hint">Masalan: e2e4,e7e5</p><input type="text" id="editor-solution" class="form-input" placeholder="e1e8" /></div>
+        <div class="editor-group"><label>Qiyinlik</label><select id="editor-difficulty" class="form-input"><option value="easy">Oson</option><option value="medium">O'rta</option><option value="hard">Qiyin</option></select></div>
+        <div class="editor-group"><label>Nomi</label><input type="text" id="editor-label" class="form-input" placeholder="1 harakatda mat" /></div>
+        <div class="editor-group"><label>FEN</label><input type="text" id="editor-fen" class="form-input form-input-small" placeholder="FEN..." /><div class="fen-buttons"><button class="btn-small" onclick="editorLoadFen()">Yuklash</button><button class="btn-small" onclick="editorGetFen()">Olish</button></div></div>
+        <button class="btn-primary btn-full" onclick="editorSave()">&#10004; Zadachani saqlash</button>
+        <div class="editor-actions">
+          <button class="editor-action-btn" onclick="editorStartPos()"><span>&#8634;</span> Boshlang'ich pozitsiya</button>
+          <button class="editor-action-btn" onclick="editorClear()"><span>&#128465;</span> Taxtani tozalash</button>
+          <button class="editor-action-btn" onclick="editorFlip()"><span>&#128260;</span> Taxtani aylantirish</button>
+        </div>
       </div>
     </div>
+    <div class="panel-container"><div class="custom-puzzles-section"><h2>Sizning zadachalaringiz</h2><div id="custom-puzzles-list" class="custom-puzzles-list"></div><p class="form-hint" id="no-custom-msg">Hali zadacha yaratilmagan</p></div></div>
   </div>
 
   <!-- LEADERBOARD PAGE -->

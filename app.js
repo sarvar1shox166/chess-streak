@@ -146,7 +146,13 @@ function editorGetFen(){
   if(!editorBoard)return;
   const turn=$('editor-turn').value;
   const pos=editorBoard.fen();
-  const fen=pos+' '+turn+' KQkq - 0 1';
+  let castle='';
+  if($('castle-wk').checked)castle+='K';
+  if($('castle-wq').checked)castle+='Q';
+  if($('castle-bk').checked)castle+='k';
+  if($('castle-bq').checked)castle+='q';
+  if(!castle)castle='-';
+  const fen=pos+' '+turn+' '+castle+' - 0 1';
   $('editor-fen').value=fen;
 }
 function editorLoadFen(){
@@ -161,14 +167,18 @@ function editorLoadFen(){
 function editorSave(){
   const turn=$('editor-turn').value;
   const pos=editorBoard.fen();
-  const fen=pos+' '+turn+' KQkq - 0 1';
+  let castle='';
+  if($('castle-wk').checked)castle+='K';
+  if($('castle-wq').checked)castle+='Q';
+  if($('castle-bk').checked)castle+='k';
+  if($('castle-bq').checked)castle+='q';
+  if(!castle)castle='-';
+  const fen=pos+' '+turn+' '+castle+' - 0 1';
   const solution=$('editor-solution').value.trim();
   const difficulty=$('editor-difficulty').value;
   const label=$('editor-label').value.trim()||'Custom zadacha';
 
   if(!solution){alert('Yechimni kiriting!');return;}
-
-  // Validate FEN
   try{new Chess(fen);}catch(e){alert('Noto\'g\'ri pozitsiya!');return;}
 
   const custom=getCustomPuzzles();
@@ -205,10 +215,10 @@ function showScreen(name){
 }
 
 function initGame(){
-  // Default + custom puzzles
+  // Faqat custom puzzles
   const custom=getCustomPuzzles();
-  const allPuzzles=[...getSortedPuzzles(),...custom];
-  puzzles=allPuzzles;
+  if(!custom.length){alert("Avval Editor bo'limida zadacha yarating!");navigateTo('editor');return;}
+  puzzles=getSortedPuzzles();
   currentIdx=0;streakCount=0;skipUsed=false;gameActive=true;moveHistory=[];
   $('streak-count').textContent='0';
   $('skip-btn').disabled=false;$('skip-count').textContent='(1)';
