@@ -31,7 +31,7 @@ function loadPuzzle(idx){
   board=Chessboard('board',{
     position:pz.fen,orientation:orientation,draggable:true,
     onDragStart:onDragStart,onDrop:onDrop,onSnapEnd:onSnapEnd,
-    pieceTheme:'https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/img/chesspieces/wikipedia/{piece}.png'
+    pieceTheme:'https://chessboardjs.com/img/chesspieces/wikipedia/{piece}.png'
   });
 
   $('puzzle-number').textContent='Zadacha #'+(idx+1);
